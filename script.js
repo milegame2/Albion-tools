@@ -145,6 +145,18 @@ async function checkVersion() {
     const data = await response.json();
 
     console.log("Version:", data.version);
+
+     if (currentVersion === null) {
+        currentVersion = data.version;
+        console.log("Current version:", currentVersion);
+     }
+     else if (currentVersion !== data.version) {
+    console.log("New version found!");
+
+    location.reload();
+    }
 }
 
 checkVersion();
+
+setInterval(checkVersion, 5000);
