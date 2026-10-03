@@ -14,6 +14,7 @@ skills.map(function(skill) {
 const nameInput = document.getElementById("nameInput");
 const rollButton = document.getElementById("rollButton");
 const resultList = document.getElementById("resultList");
+const resetButton = document.getElementById("resetButton");
 
 const players = [];
 
@@ -96,6 +97,43 @@ supabaseClient
             resultList.appendChild(listItem);
         }
     )
+    
+    .on(
+    "postgres_changes",
+    {
+        event: "DELETE",
+        schema: "public",
+        table: "players"
+    },
+    function (payload) {
+        console.log("ได้รับ DELETE:", payload);
+
+        resultList.innerHTML = "";
+        players.length = 0;
+    }
+)
    .subscribe(function (status) {
     console.log("Realtime status:", status);
+});
+resetButton.addEventListener("click", async function () {
+
+    const confirmReset = confirm("ต้องการลบผลทั้งหมดใช่ไหม?");
+
+    if (!confirmReset) {
+        return;
+    }
+
+    const { error } = await supabaseClient
+        .from("players")
+        .delete()
+        .gte("id", 0);
+
+    if (error) {
+        console.log(error);
+        alert("Reset ไม่สำเร็จ");
+        return;
+    }
+
+    resultList.innerHTML = "";
+    players.length = 0;
 });
