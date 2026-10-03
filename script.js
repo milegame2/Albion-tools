@@ -97,7 +97,7 @@ supabaseClient
             resultList.appendChild(listItem);
         }
     )
-    
+
     .on(
     "postgres_changes",
     {
@@ -137,3 +137,14 @@ resetButton.addEventListener("click", async function () {
     resultList.innerHTML = "";
     players.length = 0;
 });
+
+let currentVersion = null;
+
+async function checkVersion() {
+    const response = await fetch("version.json?t=" + Date.now());
+    const data = await response.json();
+
+    console.log("Version:", data.version);
+}
+
+checkVersion();
