@@ -94,4 +94,6 @@ supabaseClient
             resultList.appendChild(listItem);
         }
     )
-    .subscribe();
+   .subscribe(function (status) {
+    console.log("Realtime status:", status);
+});
