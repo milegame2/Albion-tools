@@ -85,7 +85,9 @@ supabaseClient
         },
         function (payload) {
             const newPlayer = payload.new;
-
+            
+            console.log("ได้รับ Realtime:", payload);
+            
             const listItem = document.createElement("li");
 
             listItem.textContent =
