@@ -72,11 +72,26 @@ if (error) {
     return;
 }
 
-    const listItem = document.createElement("li");
-
-    listItem.textContent = name + " → " + randomNumber;
-
-    resultList.appendChild(listItem);
-
     nameInput.value = "";
 });
+supabaseClient
+    .channel("players-channel")
+    .on(
+        "postgres_changes",
+        {
+            event: "INSERT",
+            schema: "public",
+            table: "players"
+        },
+        function (payload) {
+            const newPlayer = payload.new;
+
+            const listItem = document.createElement("li");
+
+            listItem.textContent =
+                newPlayer.name + " → " + newPlayer.roll;
+
+            resultList.appendChild(listItem);
+        }
+    )
+    .subscribe();
