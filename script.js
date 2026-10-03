@@ -144,6 +144,9 @@ async function checkVersion() {
     const response = await fetch("version.json?t=" + Date.now());
     const data = await response.json();
 
+    const versionDisplay = document.getElementById("versionDisplay");
+          versionDisplay.textContent = "App Version: " + data.version;
+
     console.log("Version:", data.version);
 
      if (currentVersion === null) {
