@@ -17,6 +17,28 @@ const resultList = document.getElementById("resultList");
 
 const players = [];
 
+async function loadPlayers() {
+    const { data, error } = await supabaseClient
+        .from("players")
+        .select("*")
+        .order("created_at", { ascending: true });
+
+    if (error) {
+        console.log(error);
+        return;
+    }
+
+    data.forEach(function (player) {
+        const listItem = document.createElement("li");
+
+        listItem.textContent = player.name + " → " + player.roll;
+
+        resultList.appendChild(listItem);
+    });
+}
+
+loadPlayers();
+
 rollButton.addEventListener("click", async function () {
 
     const name = nameInput.value;
