@@ -115,6 +115,7 @@ supabaseClient
    .subscribe(function (status) {
     console.log("Realtime status:", status);
 });
+
 resetButton.addEventListener("click", async function () {
 
     const confirmReset = confirm("ต้องการลบผลทั้งหมดใช่ไหม?");
@@ -163,3 +164,51 @@ async function checkVersion() {
 checkVersion();
 
 setInterval(checkVersion, 5000);
+
+// donate commands
+const promptPayId = "0654796650"; // เบอร์ตัวอย่างเท่านั้น
+
+const donateButton = document.getElementById("donateButton");
+const donateBox = document.getElementById("donateBox");
+
+donateButton.addEventListener("click", function () {
+    donateBox.style.display = "block";
+});
+
+const amountButtons = document.querySelectorAll(".amountButton");
+const customAmount = document.getElementById("customAmount");
+
+amountButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        customAmount.value = button.dataset.amount;
+    });
+});
+
+const generateQrButton = document.getElementById("generateQrButton");
+const qrResult = document.getElementById("qrResult");
+
+generateQrButton.addEventListener("click", function () {
+    const amount = customAmount.value;
+
+    if (amount === "" || Number(amount) <= 0) {
+        alert("Please enter a valid amount");
+        return;
+    }
+
+    qrResult.innerHTML = "Donate amount: ฿" + amount;
+    const payload = window.promptparse.generate.anyId({
+    type: "MSISDN",
+    target: promptPayId,
+    amount: Number(amount)
+});
+
+
+QRCode.toDataURL(payload).then(function (qrImage) {
+    const img = document.createElement("img");
+    img.src = qrImage;
+    img.width = 250;
+
+    qrResult.appendChild(document.createElement("br"));
+    qrResult.appendChild(img);
+});
+});

@@ -31,6 +31,38 @@
 <h3>🏆 Roll Results</h3>
 <ul id="resultList"></ul>
 
+<hr>
+
+<h2>❤️ Support Albion Tools</h2>
+<p>If you enjoy using these tools, you can support the project.</p>
+
+<button id="donateButton">❤️ Donate</button>
+<div id="donateBox" style="display: none;">
+    <h3>☕ Support the Developer</h3>
+    <p>Choose an amount:</p>
+
+    <button class="amountButton" data-amount="50">฿50</button>
+    <button class="amountButton" data-amount="100">฿100</button>
+    <button class="amountButton" data-amount="200">฿200</button>
+
+    <p>Or enter your own amount:</p>
+
+    <input
+        id="customAmount"
+        type="number"
+        placeholder="Enter amount"
+        min="1"
+    >
+
+    <button id="generateQrButton">Generate QR</button>
+    
+    <div id="qrResult"></div>
+</div>
+
+<!-- donate commands -->
+<script src="https://cdn.jsdelivr.net/npm/@korarit/promptparse-mod"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="script.js?v=2"></script>
 
