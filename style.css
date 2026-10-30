@@ -8,3 +8,19 @@ body {
 h1 {
     font-size: 40px;
 }
+
+.calculator-link {
+    display: inline-block;
+    padding: 12px 22px;
+    background: #2878d0;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 10px 0 20px;
+    transition: background 0.2s;
+}
+
+.calculator-link:hover {
+    background: #155ba5;
+}
