@@ -1,26 +1,2 @@
-body {
-    font-family: Arial;
-    max-width: 800px;
-    margin: auto;
-    padding: 40px;
-}
-
-h1 {
-    font-size: 40px;
-}
-
-.calculator-link {
-    display: inline-block;
-    padding: 12px 22px;
-    background: #2878d0;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    margin: 10px 0 20px;
-    transition: background 0.2s;
-}
-
-.calculator-link:hover {
-    background: #155ba5;
-}
+@import url('./theme.css?v=dark1');
+body{max-width:1100px;margin:auto;padding:0 24px 50px}body>h1{margin-top:34px}body>p{max-width:720px}.calculator-link{display:inline-block;margin:8px 0 18px}.tool-section{padding:4px 0 12px}#nameInput{width:min(100%,330px);margin:6px 8px 12px 0}#rollButton,#resetButton{margin:6px 6px 12px 0}#versionDisplay{font-size:12px;color:var(--muted)}#resultList{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}#resultList:empty::before{content:'ผล Roll จะแสดงที่นี่';color:var(--muted);font-size:13px;padding:18px;border:1px dashed var(--line);border-radius:9px}#resultList li{padding:14px 18px;background:var(--panel);border:1px solid var(--line);border-radius:9px}#donateBox{margin-top:18px;padding:22px;background:var(--panel);border:1px solid var(--line);border-radius:12px}#donateBox button{margin:4px}#customAmount{max-width:240px}#qrResult{margin-top:20px}#qrResult canvas,#qrResult img{background:white;padding:12px;border-radius:8px;max-width:100%}@media(max-width:650px){body{padding:0 16px 35px}#nameInput{display:block;width:100%;max-width:none}}
